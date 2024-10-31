@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>English Quiz</h1>
+    <div id="quiz-container">
+      <div id="question"></div>
+      <div id="options">
+        <!-- Botões de opção gerados dinamicamente -->
+      </div>
+      <button id="prev-question" onclick="previousQuestion()">Voltar</button> <!-- Botão Voltar -->
+      <button id="next-question" onclick="nextQuestion()">Próxima</button>
+      <button id="restart" onclick="restartQuiz()">Reiniciar Quiz</button>
+      <p id="feedback"></p>
+      <p id="translation"></p> <!-- Espaço para tradução -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
