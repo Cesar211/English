@@ -673,3 +673,55 @@ function restartQuiz() {
 }
 
 window.onload = loadQuestion;
+
+// Variáveis para armazenar os contadores de acertos e erros
+let correctCount = 0;
+let incorrectCount = 0;
+
+// Função para atualizar os contadores na página
+function updateScore() {
+  document.getElementById("correct-count").textContent = correctCount;
+  document.getElementById("incorrect-count").textContent = incorrectCount;
+}
+
+// Modifique a função checkAnswer para atualizar os contadores
+function checkAnswer(selectedIndex) {
+  const currentQuestion = questions[currentQuestionIndex];
+  const feedbackElement = document.getElementById("feedback");
+  const translationElement = document.getElementById("translation");
+  const optionsButtons = document.querySelectorAll("#options button");
+
+  optionsButtons.forEach((button, index) => {
+    button.disabled = true;
+    if (index === currentQuestion.answer) {
+      button.classList.add("correct");
+    } else if (index === selectedIndex) {
+      button.classList.add("incorrect");
+    }
+  });
+
+  const isCorrect = selectedIndex === currentQuestion.answer;
+  feedbackElement.textContent = isCorrect ? "Parabéns, você acertou!" : "Resposta incorreta";
+  feedbackElement.style.color = isCorrect ? "#4CAF50" : "#f44336";
+
+  // Atualiza contadores de acertos e erros
+  if (isCorrect) {
+    correctCount++;
+  } else {
+    incorrectCount++;
+  }
+
+  // Atualiza os valores exibidos na página
+  updateScore();
+
+  // Exibe a tradução se a resposta estiver correta
+  if (isCorrect) {
+    translationElement.textContent = `Tradução: ${currentQuestion.translation}`;
+  }
+}
+
+// Chame a função updateScore no início para exibir os contadores iniciais
+window.onload = function() {
+  loadQuestion();
+  updateScore();
+};
